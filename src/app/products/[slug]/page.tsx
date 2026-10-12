@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { products, formatPrice } from "@/app/data/products";
 import AddToCartButton from "@/app/components/AddToCartButton";
+import WishlistButton from "@/app/components/WishlistButton";
 
 export default async function ProductDetailsPage({
   params,
@@ -83,7 +84,9 @@ export default async function ProductDetailsPage({
             </div>
 
             <div className="flex justify-between gap-4 py-4 text-sm">
-              <dt className="text-muted-foreground">Available quantity</dt>
+              <dt className="text-muted-foreground">
+                Available quantity
+              </dt>
               <dd className="font-medium text-foreground">
                 {product.stock}
               </dd>
@@ -98,6 +101,7 @@ export default async function ProductDetailsPage({
           </dl>
 
           <AddToCartButton product={product} />
+          <WishlistButton product={product} />
 
           <p className="mt-6 text-xs leading-5 text-muted-foreground">
             This is a demo product. Prices and availability are
