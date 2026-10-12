@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import { useCart } from "./CartProvider";
 
 const categories = [
   "Electronics",
@@ -16,6 +17,7 @@ const categories = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { totalItems, ready } = useCart();
 
   const iconClass =
     "rounded-lg p-2 transition hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500";
@@ -105,8 +107,14 @@ export default function Navbar() {
 
           <Link
             href="/cart"
-            aria-label="Shopping cart"
-            className={iconClass}
+            aria-label={
+              ready
+                ? `Shopping cart, ${totalItems} ${
+                    totalItems === 1 ? "item" : "items"
+                  }`
+                : "Shopping cart"
+            }
+            className={`${iconClass} relative`}
           >
             <svg
               aria-hidden="true"
@@ -120,6 +128,15 @@ export default function Navbar() {
               <circle cx="9" cy="20" r="1" />
               <circle cx="18" cy="20" r="1" />
             </svg>
+
+            {ready && totalItems > 0 && (
+              <span
+                aria-hidden="true"
+                className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-300 px-1 text-[10px] font-bold text-slate-900"
+              >
+                {totalItems > 99 ? "99+" : totalItems}
+              </span>
+            )}
           </Link>
 
           <button
