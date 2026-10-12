@@ -51,6 +51,45 @@ export const products: Product[] = [
     stock: 15,
     featured: true,
   },
+    {
+    id: "prod-004",
+    slug: "nestcare-daily-serum",
+    name: "NestCare Daily Serum",
+    category: "Beauty",
+    price: 24.99,
+    originalPrice: 29.99,
+    image: "/products/nestcare-daily-serum.png",
+    description:
+      "A skincare-inspired demo product presented in an amber glass bottle with a teal-and-ivory dropper.",
+    stock: 30,
+    featured: true,
+  },
+    {
+    id: "prod-005",
+    slug: "nestmove-yoga-mat",
+    name: "NestMove Yoga Mat",
+    category: "Sports",
+    price: 34.99,
+    originalPrice: 44.99,
+    image: "/products/nestmove-yoga-mat.png",
+    description:
+      "Make space for your daily movement with a textured teal yoga mat and an ivory carrying strap.",
+    stock: 20,
+    featured: true,
+  },
+    {
+    id: "prod-006",
+    slug: "nestcarry-crossbody-bag",
+    name: "NestCarry Crossbody Bag",
+    category: "Accessories",
+    price: 39.99,
+    originalPrice: 49.99,
+    image: "/products/nestcarry-crossbody-bag.png",
+    description:
+      "Keep your everyday essentials close with a compact teal crossbody bag, an adjustable strap, and brass-tone details.",
+    stock: 22,
+    featured: true,
+  },
 ];
 
 export function formatPrice(price: number) {
