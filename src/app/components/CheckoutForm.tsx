@@ -98,7 +98,12 @@ export default function CheckoutForm({
   if (orderId) {
     return (
       <section className="rounded-3xl border border-border bg-surface p-8 text-center">
-        <p className="text-4xl" aria-hidden="true">✓</p>
+        <p
+          className="text-4xl text-teal-700 dark:text-teal-300"
+          aria-hidden="true"
+        >
+          ✓
+        </p>
 
         <h2 className="mt-4 text-2xl font-bold">
           Your demo order is confirmed!
@@ -112,12 +117,21 @@ export default function CheckoutForm({
           Order ID: {orderId}
         </p>
 
-        <Link
-          href="/products"
-          className="mt-6 inline-flex rounded-xl bg-brand px-6 py-3 font-semibold text-white hover:bg-brand-hover"
-        >
-          Continue Shopping
-        </Link>
+        <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+          <Link
+            href="/orders"
+            className="inline-flex min-h-12 items-center justify-center rounded-xl bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500"
+          >
+            View My Orders
+          </Link>
+
+          <Link
+            href="/products"
+            className="inline-flex min-h-12 items-center justify-center rounded-xl border border-border px-6 py-3 font-semibold transition hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500"
+          >
+            Continue Shopping
+          </Link>
+        </div>
       </section>
     );
   }
@@ -159,6 +173,7 @@ export default function CheckoutForm({
         <fieldset disabled={loading} className="mt-6 space-y-5">
           <div>
             <label htmlFor="checkout-name">Full name</label>
+
             <input
               id="checkout-name"
               name="name"
@@ -172,6 +187,7 @@ export default function CheckoutForm({
 
           <div>
             <label htmlFor="checkout-email">Account email</label>
+
             <input
               id="checkout-email"
               type="email"
@@ -183,6 +199,7 @@ export default function CheckoutForm({
 
           <div>
             <label htmlFor="checkout-phone">Phone number</label>
+
             <input
               id="checkout-phone"
               name="phone"
@@ -196,6 +213,7 @@ export default function CheckoutForm({
 
           <div>
             <label htmlFor="checkout-address">Street address</label>
+
             <textarea
               id="checkout-address"
               name="address"
@@ -210,6 +228,7 @@ export default function CheckoutForm({
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
               <label htmlFor="checkout-city">City</label>
+
               <input
                 id="checkout-city"
                 name="city"
@@ -222,6 +241,7 @@ export default function CheckoutForm({
 
             <div>
               <label htmlFor="checkout-postal">Postal code</label>
+
               <input
                 id="checkout-postal"
                 name="postalCode"
@@ -247,6 +267,7 @@ export default function CheckoutForm({
               <span>
                 {product.name} × {quantity}
               </span>
+
               <span className="shrink-0 font-medium">
                 {formatPrice(
                   (Math.round(product.price * 100) * quantity) / 100,
@@ -259,14 +280,18 @@ export default function CheckoutForm({
         <dl className="mt-6 space-y-3 border-t border-border pt-5 text-sm">
           <div className="flex justify-between">
             <dt>Subtotal</dt>
-            <dd>{formatPrice(subtotal)}</dd>
+            <dd>{formatPrice(subtotalCents / 100)}</dd>
           </div>
+
           <div className="flex justify-between">
             <dt>Shipping</dt>
             <dd>
-              {shippingCents === 0 ? "Free" : formatPrice(5)}
+              {shippingCents === 0
+                ? "Free"
+                : formatPrice(shippingCents / 100)}
             </dd>
           </div>
+
           <div className="flex justify-between text-lg font-bold">
             <dt>Total</dt>
             <dd>{formatPrice(total)}</dd>
@@ -279,6 +304,7 @@ export default function CheckoutForm({
 
         <div className="mt-5 rounded-xl bg-muted p-4 text-sm">
           <p className="font-semibold">Cash on Delivery — Demo</p>
+
           <p className="mt-2 text-xs leading-5 text-muted-foreground">
             This portfolio store creates sample orders only.
             No real payment or delivery takes place.
@@ -286,7 +312,10 @@ export default function CheckoutForm({
         </div>
 
         {error && (
-          <p role="alert" className="mt-4 text-sm text-red-600 dark:text-red-300">
+          <p
+            role="alert"
+            className="mt-4 text-sm text-red-600 dark:text-red-300"
+          >
             {error}
           </p>
         )}
@@ -294,7 +323,7 @@ export default function CheckoutForm({
         <button
           type="submit"
           disabled={loading}
-          className="mt-6 min-h-12 w-full rounded-xl bg-brand px-5 py-3 font-semibold text-white hover:bg-brand-hover disabled:opacity-60"
+          className="mt-6 min-h-12 w-full rounded-xl bg-brand px-5 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500 disabled:opacity-60"
         >
           {loading ? "Placing order..." : "Place Demo Order"}
         </button>
