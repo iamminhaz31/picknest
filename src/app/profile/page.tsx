@@ -11,7 +11,7 @@ export default async function ProfilePage() {
   });
 
   if (!session) {
-    redirect("/signin");
+    redirect("/signin?next=/profile");
   }
 
   const { user } = session;

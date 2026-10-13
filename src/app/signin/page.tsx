@@ -2,13 +2,24 @@
 
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
-export default function SignInPage() {
-  const router = useRouter();
+function getReturnPath() {
+  const params = new URLSearchParams(window.location.search);
+  const next = params.get("next");
 
+  const allowedPaths = [
+    "/checkout",
+    "/orders",
+    "/profile",
+    "/profile/update",
+  ];
+
+  return next && allowedPaths.includes(next) ? next : "/";
+}
+
+export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -38,6 +49,8 @@ export default function SignInPage() {
       return;
     }
 
+    const returnPath = getReturnPath();
+
     setLoading(true);
 
     try {
@@ -48,15 +61,14 @@ export default function SignInPage() {
 
       if (error) {
         showError(error.message || "Could not sign in.");
+        setLoading(false);
         return;
       }
 
       toast.success("Signed in successfully.");
-      router.replace("/");
-      router.refresh();
+      window.location.replace(returnPath);
     } catch {
       showError("Connection failed. Please try again.");
-    } finally {
       setLoading(false);
     }
   }
@@ -86,7 +98,10 @@ export default function SignInPage() {
           className="mt-8 space-y-5"
         >
           <div>
-            <label htmlFor="signin-email" className="text-sm font-medium">
+            <label
+              htmlFor="signin-email"
+              className="text-sm font-medium"
+            >
               Email address
             </label>
 

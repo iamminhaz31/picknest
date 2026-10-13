@@ -60,7 +60,7 @@ export default async function OrdersPage() {
   });
 
   if (!session) {
-    redirect("/signin");
+    redirect("/signin?next=/orders");
   }
 
   let orders: Order[];

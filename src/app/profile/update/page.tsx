@@ -11,7 +11,7 @@ export default async function UpdateProfilePage() {
   });
 
   if (!session) {
-    redirect("/signin");
+    redirect("/signin?next=/profile/update");
   }
 
   return (

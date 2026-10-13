@@ -11,7 +11,7 @@ export default async function CheckoutPage() {
   });
 
   if (!session) {
-    redirect("/signin");
+    redirect("/signin?next=/checkout");
   }
 
   return (
