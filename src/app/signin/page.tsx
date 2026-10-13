@@ -169,11 +169,23 @@ export default function SignInPage() {
         <p className="mt-6 text-center text-sm text-muted-foreground">
           New to PickNest?{" "}
           <Link
-            href="/signup"
-            className="font-semibold text-teal-700 hover:underline dark:text-teal-300"
-          >
-            Create an account
-          </Link>
+  href="/signup"
+  onClick={(event) => {
+    event.preventDefault();
+
+    const returnPath = getReturnPath();
+
+    const signupPath =
+      returnPath === "/"
+        ? "/signup"
+        : `/signup?next=${encodeURIComponent(returnPath)}`;
+
+    window.location.assign(signupPath);
+  }}
+  className="font-semibold text-teal-700 hover:underline dark:text-teal-300"
+>
+  Create an account
+</Link>
         </p>
       </section>
     </main>

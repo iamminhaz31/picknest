@@ -6,6 +6,22 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
+function getSignInPath() {
+  const params = new URLSearchParams(window.location.search);
+  const next = params.get("next");
+
+  const allowedPaths = [
+    "/checkout",
+    "/orders",
+    "/profile",
+    "/profile/update",
+  ];
+
+  return next && allowedPaths.includes(next)
+    ? `/signin?next=${encodeURIComponent(next)}`
+    : "/signin";
+}
+
 export default function SignUpPage() {
   const router = useRouter();
 
@@ -45,6 +61,8 @@ export default function SignUpPage() {
       return;
     }
 
+    const signInPath = getSignInPath();
+
     setLoading(true);
 
     try {
@@ -60,7 +78,7 @@ export default function SignUpPage() {
       }
 
       toast.success("Registration complete. Please sign in.");
-      router.push("/signin");
+      router.push(signInPath);
     } catch {
       showError("Connection failed. Please try again.");
     } finally {
@@ -93,7 +111,10 @@ export default function SignUpPage() {
           className="mt-8 space-y-5"
         >
           <div>
-            <label htmlFor="signup-name" className="text-sm font-medium">
+            <label
+              htmlFor="signup-name"
+              className="text-sm font-medium"
+            >
               Full name
             </label>
 
@@ -113,7 +134,10 @@ export default function SignUpPage() {
           </div>
 
           <div>
-            <label htmlFor="signup-email" className="text-sm font-medium">
+            <label
+              htmlFor="signup-email"
+              className="text-sm font-medium"
+            >
               Email address
             </label>
 
@@ -187,6 +211,10 @@ export default function SignUpPage() {
           Already have an account?{" "}
           <Link
             href="/signin"
+            onClick={(event) => {
+              event.preventDefault();
+              router.push(getSignInPath());
+            }}
             className="font-semibold text-teal-700 hover:underline dark:text-teal-300"
           >
             Sign in
