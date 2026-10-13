@@ -16,6 +16,11 @@ export default function CartPage() {
     removeFromCart,
   } = useCart();
 
+  const subtotalCents = Math.round(subtotal * 100);
+  const shippingCents =
+    items.length === 0 || subtotalCents >= 10000 ? 0 : 500;
+  const totalCents = subtotalCents + shippingCents;
+
   if (!ready) {
     return (
       <main className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6">
@@ -47,8 +52,8 @@ export default function CartPage() {
           </p>
 
           <Link
-            href="/#featured-products"
-            className="mt-6 inline-flex rounded-xl bg-brand px-6 py-3 font-semibold text-white hover:bg-brand-hover"
+            href="/products"
+            className="mt-6 inline-flex rounded-xl bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500"
           >
             Start Shopping
           </Link>
@@ -114,7 +119,7 @@ export default function CartPage() {
                       onClick={() =>
                         updateQuantity(product.id, quantity - 1)
                       }
-                      className="h-10 w-10 hover:bg-muted disabled:opacity-40"
+                      className="h-10 w-10 hover:bg-muted focus-visible:outline-2 focus-visible:outline-teal-500 disabled:opacity-40"
                     >
                       −
                     </button>
@@ -130,7 +135,7 @@ export default function CartPage() {
                       onClick={() =>
                         updateQuantity(product.id, quantity + 1)
                       }
-                      className="h-10 w-10 hover:bg-muted disabled:opacity-40"
+                      className="h-10 w-10 hover:bg-muted focus-visible:outline-2 focus-visible:outline-teal-500 disabled:opacity-40"
                     >
                       +
                     </button>
@@ -159,7 +164,7 @@ export default function CartPage() {
           ))}
 
           <Link
-            href="/#featured-products"
+            href="/products"
             className="inline-block text-sm font-medium text-teal-700 hover:underline dark:text-teal-300"
           >
             ← Continue Shopping
@@ -172,21 +177,46 @@ export default function CartPage() {
           <dl className="mt-6 space-y-4 text-sm">
             <div className="flex justify-between gap-4">
               <dt className="text-muted-foreground">
-                Subtotal ({totalItems} items)
+                Subtotal ({totalItems}{" "}
+                {totalItems === 1 ? "item" : "items"})
               </dt>
+
               <dd className="font-semibold">
-                {formatPrice(subtotal)}
+                {formatPrice(subtotalCents / 100)}
               </dd>
             </div>
 
             <div className="flex justify-between gap-4">
               <dt className="text-muted-foreground">Shipping</dt>
-              <dd>Calculated at checkout</dd>
+
+              <dd className="font-semibold">
+                {shippingCents === 0
+                  ? "Free"
+                  : formatPrice(shippingCents / 100)}
+              </dd>
+            </div>
+
+            <div className="flex justify-between gap-4 border-t border-border pt-4 text-base font-bold">
+              <dt>Total</dt>
+              <dd>{formatPrice(totalCents / 100)}</dd>
             </div>
           </dl>
 
-          <p className="mt-6 border-t border-border pt-4 text-xs leading-6 text-muted-foreground">
-            This is a demo cart. Checkout will be added in a later step.
+          <p className="mt-4 text-xs leading-5 text-muted-foreground">
+            Demo shipping: free on orders of $100 or more.
+            Otherwise, a $5 shipping fee applies.
+          </p>
+
+          <Link
+            href="/checkout"
+            className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-4 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500"
+          >
+            Proceed to Checkout
+            <span aria-hidden="true">→</span>
+          </Link>
+
+          <p className="mt-3 text-center text-xs leading-5 text-muted-foreground">
+            Sign in to place a demo order. No payment is collected.
           </p>
         </aside>
       </div>

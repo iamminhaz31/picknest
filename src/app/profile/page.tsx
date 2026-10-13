@@ -16,6 +16,9 @@ export default async function ProfilePage() {
 
   const { user } = session;
 
+  const buttonClass =
+    "flex min-h-12 items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500";
+
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6">
       <section className="mx-auto max-w-xl overflow-hidden rounded-3xl border border-border bg-surface">
@@ -24,9 +27,7 @@ export default async function ProfilePage() {
             {Array.from(user.name.trim())[0]?.toUpperCase() || "P"}
           </div>
 
-          <h1 className="mt-4 text-3xl font-bold">
-            My Account
-          </h1>
+          <h1 className="mt-4 text-3xl font-bold">My Account</h1>
 
           <p className="mt-2 text-sm text-muted-foreground">
             Your PickNest profile
@@ -55,19 +56,30 @@ export default async function ProfilePage() {
               </dd>
             </div>
           </dl>
-          <Link
-  href="/profile/update"
-  className="mt-6 flex min-h-12 items-center justify-center rounded-xl border border-border px-5 py-3 font-semibold transition hover:bg-muted"
->
-  Edit Profile
-</Link>
 
-          <Link
-            href="/products"
-            className="mt-6 flex min-h-12 items-center justify-center rounded-xl bg-brand px-5 py-3 font-semibold text-white transition hover:bg-brand-hover"
-          >
-            Continue Shopping
-          </Link>
+          <div className="mt-6 space-y-3">
+            <Link
+              href="/orders"
+              className={`${buttonClass} bg-brand text-white hover:bg-brand-hover`}
+            >
+              <span aria-hidden="true">📦</span>
+              My Orders
+            </Link>
+
+            <Link
+              href="/profile/update"
+              className={`${buttonClass} border border-border hover:bg-muted`}
+            >
+              Edit Profile
+            </Link>
+
+            <Link
+              href="/products"
+              className={`${buttonClass} border border-border hover:bg-muted`}
+            >
+              Continue Shopping
+            </Link>
+          </div>
         </div>
       </section>
     </main>
