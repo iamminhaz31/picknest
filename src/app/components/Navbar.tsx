@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import AuthButtons from "./AuthButtons";
 import { useCart } from "./CartProvider";
 
 const categories = [
@@ -78,15 +79,12 @@ export default function Navbar() {
           </button>
         </form>
 
-        <div className="flex items-center justify-end gap-2 sm:gap-4">
+        <div className="flex flex-wrap items-center justify-end gap-2 sm:gap-4">
           <ThemeToggle />
 
-          <Link
-            href="/signin"
-            className="hidden text-sm font-medium hover:underline sm:block"
-          >
-            Sign in
-          </Link>
+          <div className="hidden sm:block">
+            <AuthButtons />
+          </div>
 
           <Link
             href="/wishlist"
@@ -215,13 +213,9 @@ export default function Navbar() {
             </Link>
           ))}
 
-          <Link
-            href="/signin"
-            onClick={() => setMenuOpen(false)}
-            className="mt-2 rounded-lg bg-brand px-3 py-3 text-center text-sm font-semibold text-white hover:bg-brand-hover"
-          >
-            Sign in
-          </Link>
+          <div className="mt-2 border-t border-border pt-3 sm:hidden">
+            <AuthButtons />
+          </div>
         </div>
       </nav>
     </header>
