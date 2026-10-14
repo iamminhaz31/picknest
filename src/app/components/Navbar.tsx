@@ -21,7 +21,7 @@ export default function Navbar() {
   const { totalItems, ready } = useCart();
 
   const iconClass =
-    "rounded-lg p-2 transition hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500";
+    "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500";
 
   return (
     <header className="border-b border-border bg-surface text-foreground">
@@ -29,16 +29,21 @@ export default function Navbar() {
         Discover something great for every day.
       </div>
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-4 px-4 py-4 sm:grid-cols-[auto_1fr] sm:px-6 lg:grid-cols-[auto_1fr_auto] lg:gap-8">
-        <Link href="/" aria-label="PickNest home" className="w-fit">
+      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 gap-y-4 px-4 py-4 sm:gap-x-4 sm:px-6 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-6">
+        <Link
+          href="/"
+          aria-label="PickNest home"
+          onClick={() => setMenuOpen(false)}
+          className="min-w-0 w-fit"
+        >
           <Image
             src="/picknest-logo.png"
             alt="PickNest"
             width={2048}
             height={704}
             priority
-            sizes="(max-width: 640px) 150px, 180px"
-            className="h-auto w-[150px] sm:w-[180px] dark:brightness-150"
+            sizes="(max-width: 639px) 130px, 180px"
+            className="h-auto w-[130px] max-w-full sm:w-[180px] dark:brightness-150"
           />
         </Link>
 
@@ -46,7 +51,7 @@ export default function Navbar() {
           action="/products"
           method="get"
           role="search"
-          className="order-3 flex min-w-0 items-center rounded-xl border border-border bg-muted focus-within:border-teal-500 focus-within:ring-2 focus-within:ring-teal-500/20 sm:col-span-2 lg:order-none lg:col-span-1"
+          className="order-3 col-span-2 flex min-w-0 items-center rounded-xl border border-border bg-muted focus-within:border-teal-500 focus-within:ring-2 focus-within:ring-teal-500/20 lg:order-none lg:col-span-1"
         >
           <label htmlFor="product-search" className="sr-only">
             Search products
@@ -63,7 +68,7 @@ export default function Navbar() {
           <button
             type="submit"
             aria-label="Search"
-            className="m-1 rounded-lg bg-brand p-3 text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500"
+            className="m-1 shrink-0 rounded-lg bg-brand p-3 text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500"
           >
             <svg
               aria-hidden="true"
@@ -79,16 +84,17 @@ export default function Navbar() {
           </button>
         </form>
 
-        <div className="flex flex-wrap items-center justify-end gap-2 sm:gap-4">
+        <div className="flex items-center justify-end gap-1 sm:gap-2">
           <ThemeToggle />
 
-          <div className="hidden sm:block">
+          <div className="hidden lg:block">
             <AuthButtons />
           </div>
 
           <Link
             href="/wishlist"
             aria-label="Wishlist"
+            onClick={() => setMenuOpen(false)}
             className={iconClass}
           >
             <svg
@@ -97,7 +103,7 @@ export default function Navbar() {
               fill="none"
               stroke="currentColor"
               strokeWidth={1.8}
-              className="h-6 w-6"
+              className="h-5 w-5"
             >
               <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" />
             </svg>
@@ -112,6 +118,7 @@ export default function Navbar() {
                   }`
                 : "Shopping cart"
             }
+            onClick={() => setMenuOpen(false)}
             className={`${iconClass} relative`}
           >
             <svg
@@ -120,7 +127,7 @@ export default function Navbar() {
               fill="none"
               stroke="currentColor"
               strokeWidth={1.8}
-              className="h-6 w-6"
+              className="h-5 w-5"
             >
               <path d="M3 3h2l2.4 12h11.2l2-8H6" />
               <circle cx="9" cy="20" r="1" />
@@ -151,7 +158,7 @@ export default function Navbar() {
               fill="none"
               stroke="currentColor"
               strokeWidth={2}
-              className="h-6 w-6"
+              className="h-5 w-5"
             >
               {menuOpen ? (
                 <path d="m6 6 12 12M6 18 18 6" />
@@ -193,7 +200,7 @@ export default function Navbar() {
         hidden={!menuOpen}
         className="border-t border-border px-4 py-4 lg:hidden"
       >
-        <div className="grid gap-1">
+        <div className="mx-auto grid max-w-7xl gap-1">
           <Link
             href="/products"
             onClick={() => setMenuOpen(false)}
@@ -213,7 +220,17 @@ export default function Navbar() {
             </Link>
           ))}
 
-          <div className="mt-2 border-t border-border pt-3 sm:hidden">
+          <div
+            className="mt-2 border-t border-border pt-3"
+            onClick={(event) => {
+              if (
+                event.target instanceof Element &&
+                event.target.closest("a")
+              ) {
+                setMenuOpen(false);
+              }
+            }}
+          >
             <AuthButtons />
           </div>
         </div>
