@@ -17,7 +17,7 @@ export default async function ProfilePage() {
   const { user } = session;
 
   const buttonClass =
-    "flex min-h-12 items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500";
+    "flex min-h-12 items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent";
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6">

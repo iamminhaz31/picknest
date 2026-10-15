@@ -21,20 +21,20 @@ export default function Navbar() {
   const { totalItems, ready } = useCart();
 
   const iconClass =
-    "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500";
+    "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+
+  const categoryClass =
+    "rounded-md transition hover:text-orange-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent";
 
   return (
     <header className="border-b border-border bg-surface text-foreground">
-      <div className="bg-brand px-4 py-2 text-center text-xs font-medium text-white">
-        Discover something great for every day.
-      </div>
-
+      
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 gap-y-4 px-4 py-4 sm:gap-x-4 sm:px-6 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-6">
         <Link
           href="/"
           aria-label="PickNest home"
           onClick={() => setMenuOpen(false)}
-          className="min-w-0 w-fit"
+          className="w-fit min-w-0 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         >
           <Image
             src="/picknest-logo.png"
@@ -51,7 +51,7 @@ export default function Navbar() {
           action="/products"
           method="get"
           role="search"
-          className="order-3 col-span-2 flex min-w-0 items-center rounded-xl border border-border bg-muted focus-within:border-teal-500 focus-within:ring-2 focus-within:ring-teal-500/20 lg:order-none lg:col-span-1"
+          className="order-3 col-span-2 flex min-w-0 items-center rounded-xl border border-border bg-muted focus-within:border-brand focus-within:ring-2 focus-within:ring-accent/30 lg:order-none lg:col-span-1"
         >
           <label htmlFor="product-search" className="sr-only">
             Search products
@@ -68,7 +68,7 @@ export default function Navbar() {
           <button
             type="submit"
             aria-label="Search"
-            className="m-1 shrink-0 rounded-lg bg-brand p-3 text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500"
+            className="m-1 shrink-0 rounded-lg bg-brand p-3 text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             <svg
               aria-hidden="true"
@@ -137,7 +137,7 @@ export default function Navbar() {
             {ready && totalItems > 0 && (
               <span
                 aria-hidden="true"
-                className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-300 px-1 text-[10px] font-bold text-slate-900"
+                className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1 text-[10px] font-bold text-slate-950"
               >
                 {totalItems > 99 ? "99+" : totalItems}
               </span>
@@ -172,12 +172,12 @@ export default function Navbar() {
 
       <nav
         aria-label="Product categories"
-        className="hidden border-t border-border lg:block"
+        className="hidden border-t border-white/10 bg-navy text-navy-foreground lg:block"
       >
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-7 px-6 py-3 text-sm font-medium">
           <Link
             href="/products"
-            className="text-teal-700 hover:underline dark:text-teal-300"
+            className={`${categoryClass} font-semibold text-orange-300`}
           >
             All Products
           </Link>
@@ -186,7 +186,7 @@ export default function Navbar() {
             <Link
               key={category}
               href={`/products?category=${encodeURIComponent(category)}`}
-              className="hover:underline"
+              className={categoryClass}
             >
               {category}
             </Link>
@@ -198,13 +198,13 @@ export default function Navbar() {
         id="mobile-navigation"
         aria-label="Mobile navigation"
         hidden={!menuOpen}
-        className="border-t border-border px-4 py-4 lg:hidden"
+        className="border-t border-border bg-surface px-4 py-4 lg:hidden"
       >
         <div className="mx-auto grid max-w-7xl gap-1">
           <Link
             href="/products"
             onClick={() => setMenuOpen(false)}
-            className="rounded-lg px-3 py-3 text-sm font-semibold text-teal-700 hover:bg-muted dark:text-teal-300"
+            className="rounded-lg bg-muted px-3 py-3 text-sm font-semibold text-orange-800 transition hover:bg-muted focus-visible:outline-2 focus-visible:outline-accent dark:text-orange-300"
           >
             All Products
           </Link>
@@ -214,7 +214,7 @@ export default function Navbar() {
               key={category}
               href={`/products?category=${encodeURIComponent(category)}`}
               onClick={() => setMenuOpen(false)}
-              className="rounded-lg px-3 py-3 text-sm font-medium hover:bg-muted"
+              className="rounded-lg px-3 py-3 text-sm font-medium transition hover:bg-muted focus-visible:outline-2 focus-visible:outline-accent"
             >
               {category}
             </Link>

@@ -81,7 +81,7 @@ export default function WishlistPage() {
                 removeFromWishlist(product.id);
                 toast.success("Removed from wishlist.");
               }}
-              className="mt-3 w-full rounded-xl border border-border px-4 py-3 text-sm font-medium text-red-600 transition hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500 dark:text-red-400"
+              className="mt-3 w-full rounded-xl border border-border px-4 py-3 text-sm font-medium text-red-600 transition hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:text-red-400"
             >
               Remove from Wishlist
             </button>

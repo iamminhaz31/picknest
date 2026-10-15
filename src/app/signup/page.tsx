@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
+import GoogleLoginButton from "@/app/components/GoogleLoginButton";
 
 function getSignInPath() {
   const params = new URLSearchParams(window.location.search);
@@ -31,6 +32,8 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const submitting = useRef(false);
+
   function showError(message: string) {
     setErrorMessage(message);
     toast.error(message);
@@ -39,7 +42,7 @@ export default function SignUpPage() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (loading) return;
+    if (submitting.current) return;
 
     setErrorMessage("");
 
@@ -63,6 +66,7 @@ export default function SignUpPage() {
 
     const signInPath = getSignInPath();
 
+    submitting.current = true;
     setLoading(true);
 
     try {
@@ -74,6 +78,8 @@ export default function SignUpPage() {
 
       if (error) {
         showError(error.message || "Could not create your account.");
+        submitting.current = false;
+        setLoading(false);
         return;
       }
 
@@ -81,18 +87,18 @@ export default function SignUpPage() {
       router.push(signInPath);
     } catch {
       showError("Connection failed. Please try again.");
-    } finally {
+      submitting.current = false;
       setLoading(false);
     }
   }
 
   const inputClass =
-    "mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground outline-none placeholder:text-muted-foreground focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 disabled:opacity-60";
+    "mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground outline-none placeholder:text-muted-foreground focus:border-brand focus:ring-2 focus:ring-accent/25 disabled:opacity-60";
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6">
       <section className="mx-auto max-w-md rounded-3xl border border-border bg-surface p-6 sm:p-8">
-        <p className="text-sm font-semibold text-teal-700 dark:text-teal-300">
+        <p className="text-sm font-semibold text-orange-800 dark:text-orange-300">
           Welcome to PickNest
         </p>
 
@@ -171,6 +177,7 @@ export default function SignUpPage() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               placeholder="At least 8 characters"
+              minLength={8}
               maxLength={128}
               disabled={loading}
               required
@@ -194,7 +201,7 @@ export default function SignUpPage() {
           <button
             type="submit"
             disabled={loading}
-            className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-brand px-5 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500 disabled:opacity-60"
+            className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-brand px-5 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent disabled:opacity-60"
           >
             {loading && (
               <span
@@ -207,6 +214,8 @@ export default function SignUpPage() {
           </button>
         </form>
 
+        <GoogleLoginButton disabled={loading} />
+
         <p className="mt-6 text-center text-sm text-muted-foreground">
           Already have an account?{" "}
           <Link
@@ -215,7 +224,7 @@ export default function SignUpPage() {
               event.preventDefault();
               router.push(getSignInPath());
             }}
-            className="font-semibold text-teal-700 hover:underline dark:text-teal-300"
+            className="font-semibold text-orange-800 hover:underline dark:text-orange-300"
           >
             Sign in
           </Link>

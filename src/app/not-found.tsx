@@ -2,16 +2,16 @@ import Link from "next/link";
 
 export default function NotFound() {
   const buttonClass =
-    "inline-flex min-h-12 items-center justify-center rounded-xl px-6 py-3 font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500";
+    "inline-flex min-h-12 items-center justify-center rounded-xl px-6 py-3 font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent";
 
   return (
     <main className="mx-auto flex w-full max-w-7xl items-center justify-center px-4 py-16 sm:px-6 sm:py-24">
       <section className="w-full max-w-xl rounded-3xl border border-border bg-surface p-8 text-center sm:p-12">
-        <p className="text-sm font-semibold uppercase tracking-widest text-teal-700 dark:text-teal-300">
+        <p className="text-sm font-semibold uppercase tracking-widest text-orange-800 dark:text-orange-300">
           Page not found
         </p>
 
-        <p className="mt-4 text-8xl font-bold tracking-tight text-teal-700 dark:text-teal-300">
+        <p className="mt-4 text-8xl font-bold tracking-tight text-orange-800 dark:text-orange-300">
           404
         </p>
 

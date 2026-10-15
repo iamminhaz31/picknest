@@ -79,7 +79,7 @@ export default function UpdateProfileForm({
           maxLength={100}
           disabled={loading}
           required
-          className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 disabled:opacity-60"
+          className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground outline-none focus:border-brand focus:ring-2 focus:ring-accent/25 disabled:opacity-60"
         />
       </div>
 
@@ -102,7 +102,7 @@ export default function UpdateProfileForm({
 
       <Link
         href="/profile"
-        className="block text-center text-sm text-teal-700 hover:underline dark:text-teal-300"
+        className="block text-center text-sm text-orange-800 hover:underline dark:text-orange-300"
       >
         Back to My Account
       </Link>

@@ -25,7 +25,7 @@ export default async function ProductDetailsPage({
     <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6">
       <Link
         href="/#featured-products"
-        className="text-sm font-medium text-teal-700 hover:underline dark:text-teal-300"
+        className="text-sm font-medium text-orange-800 hover:underline dark:text-orange-300"
       >
         ← Back to featured products
       </Link>
@@ -43,7 +43,7 @@ export default async function ProductDetailsPage({
         </div>
 
         <div className="self-center rounded-3xl border border-border bg-surface p-6 sm:p-8">
-          <p className="text-sm font-medium text-teal-700 dark:text-teal-300">
+          <p className="text-sm font-medium text-orange-800 dark:text-orange-300">
             {product.category}
           </p>
 

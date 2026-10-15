@@ -43,7 +43,7 @@ const statusColors: Record<string, string> = {
   shipped:
     "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
   delivered:
-    "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300",
+    "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300",
   cancelled:
     "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
 };
@@ -118,7 +118,7 @@ export default async function OrdersPage() {
 
         <Link
           href="/products"
-          className="text-sm font-semibold text-teal-700 hover:underline dark:text-teal-300"
+          className="text-sm font-semibold text-orange-800 hover:underline dark:text-orange-300"
         >
           Continue Shopping →
         </Link>
@@ -214,7 +214,7 @@ export default async function OrdersPage() {
 
                         <p className="mt-1 text-sm text-muted-foreground">
                           {formatPrice(item.priceCents / 100)} each
-                          · Quantity: {item.quantity}
+                          {" · "}Quantity: {item.quantity}
                         </p>
                       </div>
 
@@ -247,9 +247,7 @@ export default async function OrdersPage() {
                       <dd>
                         {order.shipping_cents === 0
                           ? "Free"
-                          : formatPrice(
-                              order.shipping_cents / 100,
-                            )}
+                          : formatPrice(order.shipping_cents / 100)}
                       </dd>
                     </div>
 

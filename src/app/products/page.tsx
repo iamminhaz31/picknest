@@ -59,7 +59,7 @@ export default async function ProductsPage({
   }
 
   const inputClass =
-    "mt-2 w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20";
+    "mt-2 w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground outline-none focus:border-brand focus:ring-2 focus:ring-accent/25";
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6">
@@ -145,7 +145,7 @@ export default async function ProductsPage({
 
         <button
           type="submit"
-          className="self-end rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500"
+          className="self-end rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
           Apply
         </button>
@@ -160,7 +160,7 @@ export default async function ProductsPage({
         {(query || category || sort !== "default") && (
           <Link
             href="/products"
-            className="text-sm font-medium text-teal-700 hover:underline dark:text-teal-300"
+            className="text-sm font-medium text-orange-800 hover:underline dark:text-orange-300"
           >
             Reset filters
           </Link>

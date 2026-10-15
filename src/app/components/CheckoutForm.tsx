@@ -93,13 +93,13 @@ export default function CheckoutForm({
   }
 
   const inputClass =
-    "mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 disabled:opacity-60";
+    "mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground outline-none focus:border-brand focus:ring-2 focus:ring-accent/25 disabled:opacity-60";
 
   if (orderId) {
     return (
       <section className="rounded-3xl border border-border bg-surface p-8 text-center">
         <p
-          className="text-4xl text-teal-700 dark:text-teal-300"
+          className="text-4xl text-orange-800 dark:text-orange-300"
           aria-hidden="true"
         >
           ✓
@@ -120,14 +120,14 @@ export default function CheckoutForm({
         <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
           <Link
             href="/orders"
-            className="inline-flex min-h-12 items-center justify-center rounded-xl bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500"
+            className="inline-flex min-h-12 items-center justify-center rounded-xl bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             View My Orders
           </Link>
 
           <Link
             href="/products"
-            className="inline-flex min-h-12 items-center justify-center rounded-xl border border-border px-6 py-3 font-semibold transition hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500"
+            className="inline-flex min-h-12 items-center justify-center rounded-xl border border-border px-6 py-3 font-semibold transition hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             Continue Shopping
           </Link>
@@ -153,7 +153,7 @@ export default function CheckoutForm({
 
         <Link
           href="/products"
-          className="mt-5 inline-block text-teal-700 hover:underline dark:text-teal-300"
+          className="mt-5 inline-block text-orange-800 hover:underline dark:text-orange-300"
         >
           Explore Products →
         </Link>
@@ -323,7 +323,7 @@ export default function CheckoutForm({
         <button
           type="submit"
           disabled={loading}
-          className="mt-6 min-h-12 w-full rounded-xl bg-brand px-5 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500 disabled:opacity-60"
+          className="mt-6 min-h-12 w-full rounded-xl bg-brand px-5 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent disabled:opacity-60"
         >
           {loading ? "Placing order..." : "Place Demo Order"}
         </button>

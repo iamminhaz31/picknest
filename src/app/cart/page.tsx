@@ -53,7 +53,7 @@ export default function CartPage() {
 
           <Link
             href="/products"
-            className="mt-6 inline-flex rounded-xl bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500"
+            className="mt-6 inline-flex rounded-xl bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             Start Shopping
           </Link>
@@ -119,7 +119,7 @@ export default function CartPage() {
                       onClick={() =>
                         updateQuantity(product.id, quantity - 1)
                       }
-                      className="h-10 w-10 hover:bg-muted focus-visible:outline-2 focus-visible:outline-teal-500 disabled:opacity-40"
+                      className="h-10 w-10 hover:bg-muted focus-visible:outline-2 focus-visible:outline-accent disabled:opacity-40"
                     >
                       −
                     </button>
@@ -135,7 +135,7 @@ export default function CartPage() {
                       onClick={() =>
                         updateQuantity(product.id, quantity + 1)
                       }
-                      className="h-10 w-10 hover:bg-muted focus-visible:outline-2 focus-visible:outline-teal-500 disabled:opacity-40"
+                      className="h-10 w-10 hover:bg-muted focus-visible:outline-2 focus-visible:outline-accent disabled:opacity-40"
                     >
                       +
                     </button>
@@ -165,7 +165,7 @@ export default function CartPage() {
 
           <Link
             href="/products"
-            className="inline-block text-sm font-medium text-teal-700 hover:underline dark:text-teal-300"
+            className="inline-block text-sm font-medium text-orange-800 hover:underline dark:text-orange-300"
           >
             ← Continue Shopping
           </Link>
@@ -209,7 +209,7 @@ export default function CartPage() {
 
           <Link
             href="/checkout"
-            className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-4 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500"
+            className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-4 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             Proceed to Checkout
             <span aria-hidden="true">→</span>

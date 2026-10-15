@@ -29,7 +29,7 @@ export default function AddToCartButton({
       type="button"
       onClick={handleAdd}
       disabled={!ready || outOfStock || stockLimitReached}
-      className="mt-6 flex min-h-12 w-full items-center justify-center rounded-xl bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-500 disabled:opacity-50"
+      className="mt-6 flex min-h-12 w-full items-center justify-center rounded-xl bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent disabled:opacity-50"
     >
       {!ready
         ? "Loading cart..."
